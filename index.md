@@ -31,17 +31,17 @@ August 2014 – January 2016
 * Designed and implemented a program for the Operations department to convert data from processing software to conform with the National Automated Clearinghouse Association (NACHA) format for the transmission of ACH transactions 
 * Created a tool for converting .CSV output of mass payments into a format that can be imported into accounting software 
 * Managed electronic payment transactions of multiple Qualified Settlement Funds 
-* Project coordination for Interactive Voice Response (IVR), postage printing, and check printing for settlements 
+* Project coordination for Interactive Voice Response (IVR), postage printing, and check printing for settlements  
 #### Information Systems Coordinator 
 May 2013 – August 2014 
 * Managed secure portal and transaction processing software development with outside vendors for core money market accounts 
 * Developed the corporate intranet site 
 * Designed and implemented transaction processing software for the Qualified Settlement Fund accounts 
-* Implemented a web-based reports server that allows staff to run on-demand reports from the corporate production databases 
+* Implemented a web-based reports server that allows staff to run on-demand reports from the corporate production databases  
 #### Information Systems Internship 
 January 2013 – May 2013 
 * Designed and created database reports (Crystal, Jasper, DevExpress) 
-* Improved existing reports
+* Improved existing reports 
 
 
 ## Education
