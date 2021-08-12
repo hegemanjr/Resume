@@ -23,21 +23,21 @@ February 2016 – 2020
 * Created a WordPress plugin to provide custom search using Google Custom Search Engine or Bing Custom Search 
 * Redesigned an existing plugin that displays departments and employees to be more flexible and extendable 
 
-### American Deposit Management Co.
-Delafield, WI
-#### Manager of Administration
+### American Deposit Management Co. 
+Delafield, WI 
+#### Manager of Administration 
 August 2014 – January 2016
 * Designed and implemented a program for the Operations department to convert data from processing software to conform with the National Automated Clearinghouse Association (NACHA) format for the transmission of ACH transactions 
 * Created a tool for converting .CSV output of mass payments into a format that can be imported into accounting software 
 * Managed electronic payment transactions of multiple Qualified Settlement Funds 
 * Project coordination for Interactive Voice Response (IVR), postage printing, and check printing for settlements 
-#### Information Systems Coordinator
+#### Information Systems Coordinator 
 May 2013 – August 2014 
 * Managed secure portal and transaction processing software development with outside vendors for core money market accounts 
 * Developed the corporate intranet site 
 * Designed and implemented transaction processing software for the Qualified Settlement Fund accounts 
 * Implemented a web-based reports server that allows staff to run on-demand reports from the corporate production databases 
-#### Information Systems Internship
+#### Information Systems Internship 
 January 2013 – May 2013 
 * Designed and created database reports (Crystal, Jasper, DevExpress) 
 * Improved existing reports
