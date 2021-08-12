@@ -25,6 +25,7 @@ February 2016 – 2020
 
 ### American Deposit Management Co. 
 Delafield, WI 
+
 #### Manager of Administration 
 August 2014 – January 2016
 * Designed and implemented a program for the Operations department to convert data from processing software to conform with the National Automated Clearinghouse Association (NACHA) format for the transmission of ACH transactions 
