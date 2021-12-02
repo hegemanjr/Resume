@@ -64,4 +64,11 @@ References
 ----------------------------------------
 > Before contacting the organizations listed above, please contact me via e-mail or phone. References will be sent out upon request. Letters of recommendation are also available.
 
+And this will produce a flow chart:
 
+```mermaid
+graph LR
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
