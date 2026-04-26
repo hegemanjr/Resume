@@ -1,72 +1,58 @@
+# Jeffrey Hegeman
 
-Jeffrey Hegeman
-============
 > Madison, Wisconsin
 > [jeff@hegeman.me](mailto:jeff@hegeman.me) • (608) 622-3093
+> [github.com/hegemanjr](https://github.com/hegemanjr)
 
-Experience
-----------
+## Core Principle: Technical Craftsmanship
+> "If you don't have time to do it right, when are you going to have time to do it again?"
+> Adopting a methodical, "Musgrave Rule" approach to system architecture to minimize technical debt and ensure long-term platform reliability.
+
+## Experience
+
 ### University of Wisconsin System Administration (*Madison, WI*)
-#### **Software Engineer/Developer IV** December 2021 – *current*
-* Leading the rebuild of the wisconsin.edu platform
-* Prepared source code for compatibility with PHP 8.2
 
-#### **Institute for Business & Entrepreneurship - IT Programmer** February 2020 – December 2021
-* Managing a multisite installation of WordPress
+#### **Senior Software Engineer (Level IV)** | December 2021 – Present
+* **Enterprise Platform Architecture:** Architect and maintain a high-availability WordPress Multisite ecosystem supporting 130+ production sites across 4 specialized networks (Public, HR, Internal, and Training).
+* **Automated Modernization:** Orchestrated the migration to PHP 8.2 across the enterprise codebase, utilizing **Rector** for automated refactoring to ensure system-wide compatibility and security.
+* **Platform Engineering:** Standardized the organizational developer experience by migrating the team from fragmented local environments to a unified **Lando/Docker/WSL2** stack, significantly reducing onboarding friction and improving local performance.
+* **Infrastructure Automation:** Authored custom Bash and PowerShell scripts to automate environment state synchronization and disaster recovery backups via cloud storage.
+* **Quality Governance:** Established strict code integrity standards by integrating **PHPStan** for static analysis and **WPCS/PHPCS** for linting into the core development lifecycle.
 
-#### **Senior Systems Programmer** February 2016 – 2020 
-* Manage heavily modified multi-network/site installation of WordPress
-* Prepared source code for compatibility with PHP 7 and again with 7.2 
-* Managed server upgrade from PHP 5.6 to 7 and again to 7.2
-* Developed auditing tools to keep content fresh and database lean
-* Created a WordPress plugin to provide custom search using Google Custom Search Engine or Bing Custom Search 
-* Redesigned an existing plugin that displays departments and employees to be more flexible and extendable 
+#### **Institute for Business & Entrepreneurship - IT Programmer** | February 2020 – December 2021
+* Managed a multisite installation of WordPress, focusing on performance optimization and security hardening for entrepreneurial resource platforms.
+
+#### **Senior Systems Programmer** | February 2016 – 2020
+* **Lifecycle Management:** Led manual and automated source code upgrades through PHP 7.0, 7.1, and 7.2 for heavily modified multi-network environments.
+* **Custom Tooling:** Developed specialized auditing tools to maintain database hygiene and content freshness across hundreds of endpoints.
+* **Extensibility:** Engineered custom WordPress plugins to integrate Google and Bing Custom Search APIs and overhauled legacy employee directory systems for improved flexibility.
 
 ### American Deposit Management Co. (*Delafield, WI*)
 
-#### **Manager of Administration** August 2014 – January 2016
-* Designed and implemented a program for the Operations department to convert data from processing software to conform with the National Automated Clearinghouse Association (*NACHA*) format for the transmission of ACH transactions 
-* Created a tool for converting .CSV output of mass payments into a format that can be imported into accounting software 
-* Managed electronic payment transactions of multiple Qualified Settlement Funds 
-* Project coordination for Interactive Voice Response (*IVR*), postage printing, and check printing for settlements
+#### **Manager of Administration / IS Coordinator** | May 2013 – January 2016
+* **Strategic FinTech Automation:** Engineered a transaction engine to automate Mass Tort settlement distributions across banking networks; programmatically enforced 100% FDIC compliance while optimizing yield via rate-prioritization logic.
+* **Mission-Critical Hardening:** Developed a Windows-based reporting suite (VB.NET/SQL) to replace manual, error-prone processes with automated, verifiable statement generation for high-net-worth Money Market and CD portfolios.
+* **Architectural Oversight:** Recognized and mitigated systemic risks by implementing automated safety checks in fund distribution, ensuring data integrity across multi-million dollar account structures.
 
-#### **Information Systems Coordinator** May 2013 – August 2014 
-* Managed secure portal and transaction processing software development with outside vendors for core money market accounts 
-* Developed the corporate intranet site 
-* Designed and implemented transaction processing software for the Qualified Settlement Fund accounts 
-* Implemented a web-based reports server that allows staff to run on-demand reports from the corporate production databases 
+## Key Projects
 
-#### **Information Systems Internship** January 2013 – May 2013 
-* Designed and created database reports (*Crystal, Jasper, DevExpress*) 
-* Improved existing reports
+### Private Cloud & Homelab Infrastructure
+* **Hypervisor Management:** Architected a high-availability home laboratory utilizing **Proxmox VE** to manage a fleet of Virtual Machines and LXC containers.
+* **Service Orchestration:** Deployed and maintained a suite of self-hosted services using **Docker** and **Docker Compose**, prioritizing data sovereignty and local-first accessibility.
+* **Network Security:** Integrated **Tailscale** for secure, encrypted mesh networking between internal nodes, eliminating the need for traditional VPN overhead.
 
+### Network-in-a-Box (Portable Lab)
+* Engineered a portable, ruggedized network environment using **Docker**, **Tailscale**, and a mini-PC node for field-testing distributed systems and local-first media synchronization.
 
-Education
----------
-### Waukesha County Technical College (Pewaukee, WI)
-**AAS - Programming - Web and Software Development**
+## Technical Skills
+* **Languages:** PHP (15+ years), JavaScript, SQL/MySQL, Bash, PowerShell, Java, VB.NET.
+* **Foundational Languages:** Java (Academic foundation in strict OOP, Interfaces, Abstract Classes, and Design Patterns).
+* **Tools & Infrastructure:** Linux, Docker, Proxmox, WSL2, Lando, Tailscale, Git, Composer.
+* **Methodologies:** Automated Refactoring (Rector), Static Analysis (PHPStan), CI/CD fundamentals, "Documentation as Code."
 
-Technical Experience
---------------------
+## Education
+**Waukesha County Technical College**
+*AAS - Programming - Web and Software Development*
 
-### Programming Languages
-- **PHP:** //TODO: write about PHP experience
-
-- **JavaScript:** //TODO: write about JavaScript experience
-
-- **Java:** We both know this one's pushing
-    it.
-
-- Basic knowledge of **SQL**, **MySQL**, **HTML**, **Markdown**, **Visual Basic**, **.Net**, **C#**, **Objective C**
-
-### Tools
-- PhpStorm
-- Vagrant
-- Lando
-- Docker
-- GitKraken
-- Composer
-
-References
-----------------------------------------
-> Available upon request. Please contact me via e-mail or phone before reaching out to the organizations listed above.
+## References
+Professional references from senior leadership at the University of Wisconsin System and American Deposit Management are available upon request.
