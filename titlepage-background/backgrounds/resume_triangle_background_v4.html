@@ -1,0 +1,178 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  #controls {
+    padding: 10px 14px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px;
+  }
+  #controls strong { color: var(--color-text-primary); }
+  #swatch-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .swatch {
+    display: flex; align-items: center; gap: 6px; font-size: 12px;
+    color: var(--color-text-secondary); cursor: pointer; padding: 4px 8px;
+    border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md);
+    background: var(--color-background-secondary);
+  }
+  .swatch:hover { border-color: var(--color-border-secondary); }
+  .swatch-dot { width: 14px; height: 14px; border-radius: 3px; border: 0.5px solid rgba(0,0,0,0.2); flex-shrink: 0; }
+  .hidden-input { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+  #controls button { font-size: 12px; padding: 5px 12px; cursor: pointer; margin-left: auto; }
+  #canvas-wrap {
+    display: flex; justify-content: center; padding: 16px;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-lg); margin-top: 12px;
+  }
+  #bg-svg {
+    width: 510px; height: 660px; display: block;
+    border: 0.5px solid var(--color-border-secondary); overflow: hidden;
+  }
+</style>
+
+<div id="controls">
+  <strong>Triangle background editor</strong>
+  <div id="swatch-row"></div>
+  <button onclick="printBg()">Print / Save PDF</button>
+</div>
+
+<div id="canvas-wrap">
+  <svg id="bg-svg" viewBox="0 0 510 660" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+
+<script>
+const W = 510, H = 660;
+
+// Convergence point — roughly lower-left per the reference image
+const CX = W * 0.38;
+const CY = H * 0.75;
+
+// Two perpendicular axes through (CX, CY):
+// Axis 1: angle A (controls the "dividing line" slope)
+// Axis 2: angle A + 90°
+// These two lines divide the plane into 4 quadrants, each filled by one triangle.
+// Each triangle is defined by: the convergence point + two far corners of the canvas (extended well beyond).
+
+const A = -45; // degrees — tilt of axis 1 (roughly matches the diagonal in the reference)
+const rad = A * Math.PI / 180;
+const BIG = 3000; // extend far beyond canvas so triangles always cover fully
+
+// Unit vectors along the two axes
+const ax1 = { x: Math.cos(rad), y: Math.sin(rad) };
+const ax2 = { x: Math.cos(rad + Math.PI/2), y: Math.sin(rad + Math.PI/2) };
+
+// Four far points along ±axis1 and ±axis2
+const p1  = { x: CX + ax1.x * BIG,  y: CY + ax1.y * BIG  }; // axis1 forward
+const p1n = { x: CX - ax1.x * BIG,  y: CY - ax1.y * BIG  }; // axis1 backward
+const p2  = { x: CX + ax2.x * BIG,  y: CY + ax2.y * BIG  }; // axis2 forward
+const p2n = { x: CX - ax2.x * BIG,  y: CY - ax2.y * BIG  }; // axis2 backward
+
+function pt(p) { return `${p.x},${p.y}`; }
+
+// Each triangle spans one 90° wedge: convergence point + two adjacent far points
+// Quadrant order matches the reference: top (dark), left, right, bottom (bright)
+const triangles = [
+  {
+    id: 'left',
+    label: 'Left triangle',
+    points: `${pt({x:CX,y:CY})} ${pt(p1n)} ${pt(p2n)}`,
+    color: '#0a3d6b'
+  },
+  {
+    id: 'top',
+    label: 'Top triangle',
+    points: `${pt({x:CX,y:CY})} ${pt(p2n)} ${pt(p1)}`,
+    color: '#0d4a80'
+  },
+  {
+    id: 'right',
+    label: 'Right triangle',
+    points: `${pt({x:CX,y:CY})} ${pt(p1)} ${pt(p2)}`,
+    color: '#0d5eaf'
+  },
+  {
+    id: 'bottom',
+    label: 'Bottom triangle',
+    points: `${pt({x:CX,y:CY})} ${pt(p2)} ${pt(p1n)}`,
+    color: '#1a7fd4'
+  }
+];
+
+const svg = document.getElementById('bg-svg');
+const swatchRow = document.getElementById('swatch-row');
+
+function render() {
+  svg.innerHTML = '';
+  // clip to canvas bounds
+  const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+  const clip = document.createElementNS('http://www.w3.org/2000/svg','clipPath');
+  clip.setAttribute('id','canvas-clip');
+  const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+  rect.setAttribute('x','0'); rect.setAttribute('y','0');
+  rect.setAttribute('width',W); rect.setAttribute('height',H);
+  clip.appendChild(rect);
+  defs.appendChild(clip);
+  svg.appendChild(defs);
+
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.setAttribute('clip-path','url(#canvas-clip)');
+
+  triangles.forEach(t => {
+    const el = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    el.setAttribute('points', t.points);
+    el.setAttribute('fill', t.color);
+    g.appendChild(el);
+  });
+
+  svg.appendChild(g);
+}
+
+function buildSwatches() {
+  swatchRow.innerHTML = '';
+  triangles.forEach(t => {
+    const wrap = document.createElement('label');
+    wrap.className = 'swatch';
+    const dot = document.createElement('span');
+    dot.className = 'swatch-dot';
+    dot.style.background = t.color;
+    const lbl = document.createElement('span');
+    lbl.textContent = t.label;
+    const inp = document.createElement('input');
+    inp.type = 'color';
+    inp.className = 'hidden-input';
+    inp.value = t.color;
+    inp.addEventListener('input', e => {
+      t.color = e.target.value;
+      dot.style.background = t.color;
+      render();
+    });
+    wrap.appendChild(dot);
+    wrap.appendChild(lbl);
+    wrap.appendChild(inp);
+    swatchRow.appendChild(wrap);
+  });
+}
+
+function printBg() {
+  const serializer = new XMLSerializer();
+  const clone = svg.cloneNode(true);
+  clone.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  clone.setAttribute('width', '8.5in');
+  clone.setAttribute('height', '11in');
+  const svgStr = serializer.serializeToString(clone);
+  const blob = new Blob([svgStr], {type:'image/svg+xml'});
+  const url = URL.createObjectURL(blob);
+  const win = window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><title>Resume Background</title>
+  <style>
+    @page { size: 8.5in 11in; margin: 0; }
+    * { margin:0; padding:0; }
+    body { width:8.5in; height:11in; overflow:hidden; }
+    img { width:8.5in; height:11in; display:block; }
+  </style></head><body><img src="${url}"/></body></html>`);
+  win.document.close();
+  win.onload = () => win.print();
+}
+
+buildSwatches();
+render();
+</script>
