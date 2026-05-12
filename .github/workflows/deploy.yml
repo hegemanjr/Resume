@@ -19,7 +19,7 @@ jobs:
         run: mkdir -p ./public
 
       - name: Render PDF via Pandoc
-        uses: docker://pandoc/latex:latest
+        uses: docker://pandoc/extra:latest # Switched from latex to extra
         with:
           args: >-
             --template ./templates/eisvogel.tex
