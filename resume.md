@@ -11,6 +11,7 @@ lang: "en"
 ---
 Madison, Wisconsin  
 [jeff@hegeman.me](mailto:jeff@hegeman.me) • [(608) 622-3093](tel:608-622-3093)  
+
 github.com/hegemanjr
 
 ## Core Principle: Technical Craftsmanship
