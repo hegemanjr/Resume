@@ -4,14 +4,13 @@ title: "Jeffrey Hegeman"
 author: [Jeffrey Hegeman]
 keywords: [PHP, Architecture, Docker, Developer]
 title-size: 50
-date: "2026-04-27"
+date: "2026-05-12"
 subject: "Resume"
 subtitle: "Resume"
 lang: "en"
 ---
 Madison, Wisconsin  
 [jeff@hegeman.me](mailto:jeff@hegeman.me) • [(608) 622-3093](tel:608-622-3093)  
-
 github.com/hegemanjr
 
 ## Core Principle: Technical Craftsmanship
