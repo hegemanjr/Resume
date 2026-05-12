@@ -22,7 +22,7 @@ jobs:
         uses: docker://pandoc/latex:latest
         with:
           args: >-
-            --template eisvogel.tex
+            --template ./templates/eisvogel.tex
             -o ./public/resume.pdf
             resume.md
 
