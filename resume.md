@@ -1,8 +1,17 @@
-# Jeffrey Hegeman
-
-> Madison, Wisconsin
-> [jeff@hegeman.me](mailto:jeff@hegeman.me) • (608) 622-3093
-> [github.com/hegemanjr](https://github.com/hegemanjr)
+---
+titlepage: false
+title: "Jeffrey Hegeman"
+author: [Jeffrey Hegeman]
+keywords: [PHP, Architecture, Docker, Developer]
+title-size: 50
+date: "2026-04-27"
+subject: "Resume"
+subtitle: "Resume"
+lang: "en"
+---
+Madison, Wisconsin  
+[jeff@hegeman.me](mailto:jeff@hegeman.me) • [(608) 622-3093](tel:608-622-3093)  
+github.com/hegemanjr
 
 ## Core Principle: Technical Craftsmanship
 > "If you don't have time to do it right, when are you going to have time to do it again?"
@@ -55,4 +64,4 @@
 *AAS - Programming - Web and Software Development*
 
 ## References
-Professional references from senior leadership at the University of Wisconsin System and American Deposit Management are available upon request.
+Professional references from senior leadership at current and past roles are available upon request.

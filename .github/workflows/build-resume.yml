@@ -1,0 +1,43 @@
+name: Deploy Resumes to Pages
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create Web Folder
+        run: mkdir -p ./public
+
+      - name: Render All Resumes
+        uses: docker://pandoc/latex:latest
+        with:
+          args: >-
+            --template eisvogel.tex
+            -o ./public/resume-web.pdf
+            resume-web.md
+            # Add more lines here for other versions!
+
+      - name: Upload to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
