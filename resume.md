@@ -1,5 +1,5 @@
 ---
-titlepage: true,
+titlepage: false
 title: "Jeffrey Hegeman"
 author: [Jeffrey Hegeman]
 keywords: [PHP, Architecture, Docker]
@@ -8,13 +8,6 @@ date: "2026-04-27"
 subject: "Resume"
 subtitle: "Resume"
 lang: "en"
-titlepage-text-color: "FFFFFF"
-titlepage-rule-color: "360049"
-titlepage-rule-height: 0
-titlepage-background: "titlepage-background/backgrounds/resume-background-title-page.pdf"
-page-background: "titlepage-background/backgrounds/resume-background-page.pdf"
-logo: "logo.pdf"
-logo-width: 120
 ---
 Madison, Wisconsin  
 [jeff@hegeman.me](mailto:jeff@hegeman.me) • [(608) 622-3093](tel:608-622-3093)  
