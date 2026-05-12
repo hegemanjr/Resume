@@ -3,23 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Resumes | Your Name</title>
+    <title>Jeff Hegeman</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; line-height: 1.6; max-width: 600px; margin: 40px auto; padding: 0 20px; color: #333; }
-        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .links { margin-top: 20px; }
-        a { display: block; background: #f4f4f4; margin-bottom: 10px; padding: 15px; text-decoration: none; color: #0056b3; border-radius: 5px; border: 1px solid #ddd; transition: background 0.2s; }
-        a:hover { background: #e9e9e9; }
-        .note { font-size: 0.9em; color: #666; margin-top: 30px; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0a0a0b;
+            --bg2: #111114;
+            --bg3: #18181d;
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(255,255,255,0.18);
+            --accent: #e8ff47;
+            --accent2: #7fffd0;
+            --text: #f0f0ee;
+            --muted: #888886;
+            --faint: #444442;
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        html { font-size: 16px; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .noise {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+
+        .grid-lines {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background-image:
+                    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 80%);
+        }
+
+        .container {
+            position: relative; z-index: 1;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 5rem 2rem 6rem;
+        }
+
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px; height: 1px;
+            background: var(--accent);
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.1em;
+        }
+
+        .role {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--muted);
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.01em;
+        }
+        .role span {
+            color: var(--accent2);
+            font-weight: 400;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 4.5rem;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--muted);
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .social-links a:hover { color: var(--text); }
+        .social-links a svg {
+            width: 14px; height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--faint);
+            margin-bottom: 1.25rem;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin-bottom: 1.25rem;
+        }
+
+        .resume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .resume-card {
+            background: var(--bg2);
+            padding: 1.75rem 1.75rem 1.5rem;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            transition: background 0.2s;
+            overflow: hidden;
+        }
+        .resume-card:hover { background: var(--bg3); }
+        .resume-card.featured { background: var(--bg3); }
+
+        .resume-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        .resume-card.featured::after { transform: scaleX(1); }
+        .resume-card:hover::after { transform: scaleX(1); }
+
+        .card-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(232, 255, 71, 0.08);
+            border: 1px solid rgba(232, 255, 71, 0.2);
+            border-radius: 4px;
+            padding: 3px 7px;
+            margin-bottom: 1rem;
+        }
+        .card-tag.general {
+            color: var(--accent2);
+            background: rgba(127, 255, 208, 0.08);
+            border-color: rgba(127, 255, 208, 0.2);
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            font-weight: 300;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-format {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--faint);
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .card-format svg {
+            width: 11px; height: 11px;
+            stroke: currentColor; fill: none;
+            stroke-width: 2;
+        }
+
+        .card-arrow {
+            width: 28px; height: 28px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .resume-card:hover .card-arrow {
+            border-color: var(--accent);
+            background: rgba(232, 255, 71, 0.08);
+        }
+        .card-arrow svg {
+            width: 12px; height: 12px;
+            stroke: var(--muted); fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            transition: stroke 0.2s;
+        }
+        .resume-card:hover .card-arrow svg { stroke: var(--accent); }
+
+        .footer-note {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--faint);
+            letter-spacing: 0.05em;
+            line-height: 1.8;
+        }
+        .footer-note a {
+            color: var(--faint);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-note a:hover { color: var(--muted); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate { animation: fadeUp 0.6s ease both; }
+        .d1 { animation-delay: 0.05s; }
+        .d2 { animation-delay: 0.15s; }
+        .d3 { animation-delay: 0.25s; }
+        .d4 { animation-delay: 0.35s; }
+        .d5 { animation-delay: 0.45s; }
+
+        @media (max-width: 600px) {
+            .container { padding: 3rem 1.25rem 4rem; }
+            .resume-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-<h1>Professional Resumes</h1>
-<div class="links">
-    <a href="resume.pdf">📄 Main Resume (PDF)</a>
-<!--    <a href="resume-web.pdf">📄 Web Development Resume (PDF)</a>-->
-<!--    <a href="resume-lead.pdf">📄 Technical Leadership Resume (PDF)</a>-->
+<div class="noise"></div>
+<div class="grid-lines"></div>
+
+<div class="container">
+
+    <div class="eyebrow animate d1">Portfolio</div>
+
+    <h1 class="animate d2">Jeff<br>Hegeman</h1>
+
+    <p class="role animate d3">Software Engineer &middot; <span>Systems &amp; Infrastructure</span></p>
+
+    <div class="social-links animate d3">
+        <a href="https://github.com/hegemanjr" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            github.com/hegemanjr
+        </a>
+        <a href="https://linkedin.com/in/jeffhegeman/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/jeffhegeman
+        </a>
+        <a href="mailto:jeff@hegeman.me">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            jeff@hegeman.me
+        </a>
+    </div>
+
+    <div class="animate d4">
+        <p class="section-label">Resume versions</p>
+        <hr class="divider">
+
+        <div class="resume-grid">
+
+            <a class="resume-card featured" href="resume.pdf" target="_blank" rel="noopener">
+                <div class="card-tag general">General</div>
+                <div class="card-title">Full Resume</div>
+                <p class="card-desc">Comprehensive overview of experience, skills, and projects.</p>
+                <div class="card-footer">
+                    <div class="card-format">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        PDF
+                    </div>
+                    <div class="card-arrow">
+                        <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </div>
+                </div>
+            </a>
+
+<!--            <a class="resume-card" href="resume-backend.pdf" target="_blank" rel="noopener">-->
+<!--                <div class="card-tag">Tailored</div>-->
+<!--                <div class="card-title">Backend Engineering</div>-->
+<!--                <p class="card-desc">Emphasizes distributed systems, APIs, and infrastructure experience. Ideal for backend-focused roles.</p>-->
+<!--                <div class="card-footer">-->
+<!--                    <div class="card-format">-->
+<!--                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>-->
+<!--                        PDF-->
+<!--                    </div>-->
+<!--                    <div class="card-arrow">-->
+<!--                        <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </a>-->
+
+<!--            <a class="resume-card" href="resume-ml.pdf" target="_blank" rel="noopener">-->
+<!--                <div class="card-tag">Tailored</div>-->
+<!--                <div class="card-title">ML / AI Engineering</div>-->
+<!--                <p class="card-desc">Highlights data pipelines, model deployment, and applied ML projects. For roles with an AI focus.</p>-->
+<!--                <div class="card-footer">-->
+<!--                    <div class="card-format">-->
+<!--                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>-->
+<!--                        PDF-->
+<!--                    </div>-->
+<!--                    <div class="card-arrow">-->
+<!--                        <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </a>-->
+
+        </div>
+    </div>
+
+    <p class="footer-note animate d5">
+        Generated from Markdown via Pandoc &middot; Source on <a href="https://github.com/hegemanjr/resume" target="_blank" rel="noopener">GitHub</a>
+    </p>
+
 </div>
-<p class="note">Generated via Pandoc & GitHub Actions.</p>
 </body>
 </html>
