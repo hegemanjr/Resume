@@ -2,7 +2,7 @@
 titlepage: false
 title: "Jeffrey Hegeman"
 author: [Jeffrey Hegeman]
-keywords: [PHP, Architecture, Docker]
+keywords: [PHP, Architecture, Docker, Developer]
 title-size: 50
 date: "2026-04-27"
 subject: "Resume"
